@@ -1,26 +1,27 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Needed for mobile view-->
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="styles.css">
-        <script src="validation.js"></script>
+        <link rel="stylesheet" type="text/css" href="styles.css"><!--reference to css file-->
+        <script src="validation.js"></script><!--reference to js file-->
+        </head>
     </head>
     <body>
         <header class="navbar">
-            <button class="burger" onclick="myFunction()">
+            <button class="burger" onclick="myFunction()"><!--calls function from the validation.js-->
                 <div class="line"></div>
                 <div class="line"></div>
-                <div class="line"></di>
+                <div class="line"></div>
             </button>
             <div id="nav-links" class="nav-links">
                 <div>
-                    <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?>
+                    <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?><!--checks if user is connected-->
                         <a href="logout.php">Sign Out</a>
                     <?php else: ?>
                         <a href="login.php">Sign In</a>
                     <?php endif; ?>
                 </div>
                 <div>
-                    <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?>
+                    <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?><!--checks if user is connected-->
                         <a href="CreateListing.php">Create Listing</a>
                     <?php else: ?>
                         <a href="create_account.php">Create Account</a>
@@ -32,7 +33,7 @@
             </div>
         </header>
         <h1>Create Account</h1>
-        <form id="createAccountForm" action="create_account.php" method="POST">
+        <form id="createAccountForm" action="create_account.php" method="POST"><!--form for creating account with necessary required checks-->
             Name <input type="text" name="name" pattern="[A-Za-z]+" required> <br>
             Surname <input type="text" name="surname" pattern="[A-Za-z]+" required> <br>
             Username <input type="text" name="username" required> <br>
@@ -42,7 +43,7 @@
         </form>
    
         <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {//gets response
             // Retrieve form data
             $firstname = $_POST['name'];
             $surname = $_POST['surname'];

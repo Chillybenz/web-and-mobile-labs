@@ -1,17 +1,18 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Needed for mobile view-->
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="styles.css">
-        <script src="validation.js"></script>
+        <link rel="stylesheet" type="text/css" href="styles.css"><!--reference to css file-->
+        <script src="validation.js"></script><!--reference to js file-->
     </head>
     <body>
         <header class="navbar">
-            <button class="burger" onclick="myFunction()">
+            <button class="burger" onclick="myFunction()"><!--calls function from the validation.js-->
                 <div class="line"></div>
                 <div class="line"></div>
                 <div class="line"></di>
             </button>
             <div id="nav-links" class="nav-links">
+            <!--checks if user is connected-->
                 <div>
                     <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?>
                         <a href="logout.php">Sign Out</a>
@@ -19,6 +20,7 @@
                         <a href="login.php">Sign In</a>
                     <?php endif; ?>
                 </div>
+            <!--checks if user is connected-->
                 <div>
                     <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?>
                         <a href="CreateListing.php">Create Listing</a>
@@ -32,13 +34,15 @@
             </div>
         </header>
         <h1>Sign in</h1>
+        <!--form for logging in-->
         <form class="login-form" action="" method="POST">
             Username <input type="text" name="username" required><br>
             Password <input type="password" name="password" required><br>
             <input type="submit" value="Login">
         </form>
         <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {//gets response
+                // Retrieve form data
                 $username = $_POST['username'];
                 $password = $_POST['password'];
 

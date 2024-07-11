@@ -1,6 +1,8 @@
+// Wait for the DOM content to be loaded before running the script
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.forms['createListingForm'];
     
+    // Add event listeners to form fields for validation
     form['title'].addEventListener('input', validateTitle);
     form['area'].addEventListener('input', validateArea);
     form['num_rooms'].addEventListener('input', validateNumRooms);
@@ -8,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     form['start_date'].addEventListener('change', compare);
     form['ending_date'].addEventListener('change', compare);
 
+    // Validate the title field to ensure it only contains alphabetic characters and spaces
     function validateTitle() {
         const title = form['title'];
         const titleRegex = /^[a-zA-Z\s]+$/;
@@ -19,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Validate the area field to ensure it only contains alphabetic characters and spaces
     function validateArea() {
         const area = form['area'];
         const areaRegex = /^[a-zA-Z\s]+$/;
@@ -30,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Validate the number of rooms field to ensure it is a positive integer
     function validateNumRooms() {
         const numRooms = form['num_rooms'];
         if (!Number.isInteger(Number(numRooms.value)) || numRooms.value <= 0) {
@@ -40,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Validate the price per night field to ensure it is a positive integer
     function validatePricePerNight() {
         const pricePerNight = form['price_per_night'];
         if (!Number.isInteger(Number(pricePerNight.value)) || pricePerNight.value <= 0) {
@@ -49,18 +55,21 @@ document.addEventListener("DOMContentLoaded", function() {
             pricePerNight.setCustomValidity("");
         }
     }
-
 });
+
+// Additional event listeners for the booking form
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.forms['bookingForm']; 
 
     form['start_date'].addEventListener('change', compare);
     form['ending_date'].addEventListener('change', compare);
 
+    // Compare start and end dates to ensure validity
     function compare() {
         const startDt = form['start_date'].value;
         const endDt = form['ending_date'].value;
 
+        // Do nothing if either date is not set
         if (!startDt || !endDt) {
             return; 
         }
@@ -69,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const endDate = new Date(endDt);
         const currentDate = new Date();
 
+        // Ensure start date is a future date and end date is after start date
         if (startDate == currentDate) {
             form['start_date'].setCustomValidity("Start date must be future date.");
             form['start_date'].reportValidity();
@@ -81,6 +91,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
+
+// Toggle navigation links visibility on burger icon click
 document.addEventListener('DOMContentLoaded', () => {
     const burger = document.querySelector('.burger');
     const navLinks = document.querySelector('.nav-links');
@@ -89,6 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.classList.toggle('nav-active');
     });
 });
+
+// Function to toggle the display of navigation links
 function myFunction() {
     var x = document.getElementById("nav-links");
     if (x.style.display === "block") {
@@ -97,6 +111,8 @@ function myFunction() {
         x.style.display = "block";
     }
 }
+
+// Event listeners and validation for account creation form
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.forms['createAccountForm'];
 
@@ -104,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
     form['surname'].addEventListener('input', validateSurname);
     form['password'].addEventListener('input', validatePassword);
 
+    // Validate the name field to ensure it only contains alphabetic characters
     function validateName() {
         const name = form['name'];
         const namePattern = /^[a-zA-Z]+$/;
@@ -115,6 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Validate the surname field to ensure it only contains alphabetic characters
     function validateSurname() {
         const surname = form['surname'];
         const surnamePattern = /^[a-zA-Z]+$/;
@@ -126,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Validate the password field to ensure it meets the specified pattern
     function validatePassword() {
         const password = form['password'];
         const passwordPattern = /(?=.*\d).{4,10}/;

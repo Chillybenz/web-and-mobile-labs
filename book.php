@@ -1,26 +1,27 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Needed for mobile view-->
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="validation.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css"><!--reference to css file-->
+    <script src="validation.js"></script><!--reference to js file-->
 </head>
 <body>
+    <!--burger menu-->
     <header class="navbar">
-        <button class="burger" onclick="myFunction()">
+        <button class="burger" onclick="myFunction()"><!--calls function from the validation.js-->
             <div class="line"></div>
             <div class="line"></div>
-            <div class="line"></di>
+            <div class="line"></div>
         </button>
         <div id="nav-links" class="nav-links">
             <div>
-                <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?>
+                <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?><!--checks if user is connected-->
                     <a href="logout.php">Sign Out</a>
                 <?php else: ?>
                     <a href="login.php">Sign In</a>
                 <?php endif; ?>
             </div>
             <div>
-                <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?>
+                <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?><!--checks if user is connected-->
                     <a href="CreateListing.php">Create Listing</a>
                 <?php else: ?>
                     <a href="create_account.php">Create Account</a>
@@ -35,17 +36,17 @@
     <h2>Book</h2>
     <div id="bookings">
         <?php
-            if (isset($_GET['id'])) {
+            if (isset($_GET['id'])) { //Gets id of listing
                 $listing_id = $_GET['id'];
                 // Create PDO connection
-                $servername = "mysql:host=localhost;dbname=ds_estate";
+                $servername = "mysql:host=localhost;dbname=ds_estate"; 
                 $db_username = "root";
                 $db_password = "";
                 try {
-                    $conn = new PDO($servername, $db_username, $db_password);
+                    $conn = new PDO($servername, $db_username, $db_password); //connects to the server
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     // Prepare and execute query to fetch listing details
-                    $stmt = $conn->prepare("SELECT id, image, title, area, num_rooms, price_per_night FROM Listings WHERE id = :id");
+                    $stmt = $conn->prepare("SELECT id, image, title, area, num_rooms, price_per_night FROM Listings WHERE id = :id");//retrieve info for listing by checking the id
                     $stmt->bindParam(':id', $listing_id, PDO::PARAM_INT);
                     $stmt->execute();
                     $listing = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -70,7 +71,7 @@
         ?>
 
         <?php
-            $showDateForm = true;
+            $showDateForm = true;//variable that checks wether the user has decided on an valid date. Changes the forms
             $errorMessage = "";
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['check_dates'])) {
                 $start_date = $_POST['start_date'];

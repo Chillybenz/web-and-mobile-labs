@@ -1,26 +1,26 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Needed for mobile view-->
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="styles.css">
-        <script src="validation.js"></script>
+        <link rel="stylesheet" type="text/css" href="styles.css"><!--reference to css file-->
+        <script src="validation.js"></script><!--reference to js file-->
     </head>
     <body>
         <header class="navbar">
-            <button class="burger" onclick="myFunction()">
+            <button class="burger" onclick="myFunction()"><!--calls function from the validation.js-->
                 <div class="line"></div>
                 <div class="line"></div>
-                <div class="line"></di>
+                <div class="line"></div>
             </button>
             <div id="nav-links" class="nav-links">
                 <div>
-                    <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?>
+                    <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?><!--checks if user is connected-->
                         <a href="logout.php">Sign Out</a>
                     <?php else: ?>
                         <a href="login.php">Sign In</a>
                     <?php endif; ?>
                 </div>
                 <div>
-                    <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?>
+                    <?php if (isset($_COOKIE['logged_in']) && $_COOKIE['logged_in'] == true): ?><!--checks if user is connected-->
                         <a href="CreateListing.php">Create Listing</a>
                     <?php else: ?>
                         <a href="create_account.php">Create Account</a>
@@ -32,7 +32,7 @@
             </div>
         </header>
         <h2>Create Listing</h2>
-        <form name="createListingForm" action="CreateListing.php" method="POST" enctype = "multipart/form-data">
+        <form name="createListingForm" action="CreateListing.php" method="POST" enctype = "multipart/form-data"><!--multipart needed for uploading an image-->
             <label for="image" >Insert a photo of the property:</label>
             <input type = "file" name = "image" accept="image/png, image/jpeg, image/jpg" required> <br>
             <label for = "title">Insert Title:</label>
@@ -72,7 +72,7 @@
                 } else {
                     echo "Image not set.";
                 }
-
+                //make the necessary checks
                 if (!preg_match("/^[a-zA-Z\s]+$/", $title)) {
                     die("Title must contain only characters.");
                 }
